@@ -10,45 +10,67 @@ private:
     float e[3];
 
 public:
-    Vec3() {}
+    Vec3();
     Vec3(float e0, float e1, float e2);
-    inline float getCordX() const ;
-    inline float getCordY() const;
-    inline float getCordZ() const;
-    inline float getColorR() const ;
-    inline float getColorG() const;
-    inline float getColorB() const;
+    float getCordX() const ;
+    float getCordY() const;
+    float getCordZ() const;
+    float getColorR() const ;
+    float getColorG() const;
+    float getColorB() const;
 
 
     // Overloading useful unary operators
-    inline Vec3 operator-() const;
-    inline float operator[](int i) const;
-    inline float& operator[](int i);
+    Vec3 operator-() const;
+    float operator[](int i) const;
+    float& operator[](int i);
 
 
-    friend Vec3 operator+(const Vec3 &v1, const Vec3 &v2);
-    friend Vec3 operator-(const Vec3 &v1, const Vec3 &v2);
-    friend Vec3 operator*(const Vec3 &v1, const Vec3 &v2);
-    friend Vec3 operator/(const Vec3 &v1, const Vec3 &v2);
-    friend Vec3 friend operator*(float t, const Vec3 &v);
-    friend Vec3 operator/(Vec3 v, float t);
-    friend Vec3 operator*(const Vec3 &v, float t);
+    friend Vec3 operator+(const Vec3 &v1, const Vec3 &v2){
+        Vec3 v =  Vec3(v1.getCordX() + v2.getCordX(), v1.getCordY() + v2.getCordY(), v1.getCordY()+v2.getCordZ());
+        return v;
+    }
 
-    inline Vec3& operator+=(const Vec3 &v2);
-    inline Vec3& operator-=(const Vec3 &v2);
-    inline Vec3& operator*=(const Vec3 &v2);
-    inline Vec3& operator/=(const Vec3 &v2);
-    inline Vec3& operator*=(const float t);
-    inline Vec3& operator/=(const float t);
 
-    inline float length() const;
-    inline float squared_length() const;
+    friend Vec3 operator-(const Vec3 &v1, const Vec3 &v2) {
+        return {v1.e[0] - v2.e[0], v1.e[1] - v2.e[1], v1.e[2] - v2.e[2]};
+    }
 
-    inline void make_unit_vector();
+    friend Vec3 operator*(const Vec3 &v1, const Vec3 &v2) {
+        return {v1.e[0] * v2.e[0], v1.e[1] * v2.e[1], v1.e[2] * v2.e[2]};
+    }
 
-    inline float dotProduct(const Vec3 &v1, const Vec3 &v2);
-    inline Vec3 cross(const Vec3 &v1, const Vec3 &v2);
-    inline Vec3 getUnitVector(Vec3 v);
+    friend Vec3 operator/(const Vec3 &v1, const Vec3 &v2) {
+        return {v1.e[0] / v2.e[0], v1.e[1] / v2.e[1], v1.e[2] / v2.e[2]};
+    }
+
+    friend Vec3 operator*(float t, const Vec3 &v) {
+        return {t*v.e[0], t*v.e[1], t*v.e[2]};
+    }
+
+    friend Vec3 operator/(Vec3 v, float t) {
+        return {v.e[0]/t, v.e[1]/t, v.e[2]/t};
+    }
+
+    friend Vec3 operator*(const Vec3 &v, float t) {
+        return {t*v.e[0], t*v.e[1], t*v.e[2]};
+    }
+
+    Vec3& operator+=(const Vec3 &v2);
+    Vec3& operator-=(const Vec3 &v2);
+    Vec3& operator*=(const Vec3 &v2);
+    Vec3& operator/=(const Vec3 &v2);
+    Vec3& operator*=(const float t);
+    Vec3& operator/=(const float t);
+
+    float length() const;
+    float squared_length() const;
+
+    void make_unit_vector();
+
+    float dotProduct(const Vec3 &v1, const Vec3 &v2);
+    Vec3 cross(const Vec3 &v1, const Vec3 &v2);
+    Vec3 getUnitVector();
 
 };
 

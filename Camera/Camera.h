@@ -6,8 +6,6 @@
 #define PGAGORAVAI_CAMERA_H
 
 #include "../Vector/Vec3.h"
-
-#include "../Vector/Vec3.h"
 #include "Ray.h"
 
 class Camera {
@@ -18,11 +16,12 @@ private:
     Vec3 axisZ;
     double fov;
     double near;
+    double aspect;
 
 public:
-    Camera(double, Vec3, double, Vec3, double, Vec3);
+    Camera(Vec3 position, double fov, Vec3 target, double near, Vec3 up, int width, int height);
 
-    Ray getRay(double, double, int, int) const;
+    Ray getRay(double x, double y, int width, int height) const;
 };
 
 
