@@ -1,6 +1,7 @@
 #ifndef PG_RAY_H
 #define PG_RAY_H
 
+
 #include "../Vector/Vec3.h"
 
 class Ray {
