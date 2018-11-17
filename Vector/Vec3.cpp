@@ -3,6 +3,7 @@
 //
 
 #include "vec3.h"
+#include "Vec3.h"
 
 
 // This are useful binary operators (vec, vec) and (vec, scalar)
