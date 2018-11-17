@@ -3,4 +3,4 @@ project(PGagoravai)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(PGagoravai main.cpp)
+add_executable(PGagoravai main.cpp Vector/Vec3.cpp)

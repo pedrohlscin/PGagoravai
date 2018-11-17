@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/p/github/PGagoravai/Vector/Vec3.cpp" "/home/p/github/PGagoravai/cmake-build-debug/CMakeFiles/PGagoravai.dir/Vector/Vec3.cpp.o"
   "/home/p/github/PGagoravai/main.cpp" "/home/p/github/PGagoravai/cmake-build-debug/CMakeFiles/PGagoravai.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

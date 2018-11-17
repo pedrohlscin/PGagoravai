@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/PGagoravai.dir/main.cpp.o"
+  "CMakeFiles/PGagoravai.dir/Vector/Vec3.cpp.o"
   "PGagoravai.pdb"
   "PGagoravai"
 )

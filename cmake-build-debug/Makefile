@@ -123,6 +123,33 @@ PGagoravai/fast:
 	$(MAKE) -f CMakeFiles/PGagoravai.dir/build.make CMakeFiles/PGagoravai.dir/build
 .PHONY : PGagoravai/fast
 
+Vector/Vec3.o: Vector/Vec3.cpp.o
+
+.PHONY : Vector/Vec3.o
+
+# target to build an object file
+Vector/Vec3.cpp.o:
+	$(MAKE) -f CMakeFiles/PGagoravai.dir/build.make CMakeFiles/PGagoravai.dir/Vector/Vec3.cpp.o
+.PHONY : Vector/Vec3.cpp.o
+
+Vector/Vec3.i: Vector/Vec3.cpp.i
+
+.PHONY : Vector/Vec3.i
+
+# target to preprocess a source file
+Vector/Vec3.cpp.i:
+	$(MAKE) -f CMakeFiles/PGagoravai.dir/build.make CMakeFiles/PGagoravai.dir/Vector/Vec3.cpp.i
+.PHONY : Vector/Vec3.cpp.i
+
+Vector/Vec3.s: Vector/Vec3.cpp.s
+
+.PHONY : Vector/Vec3.s
+
+# target to generate assembly for a file
+Vector/Vec3.cpp.s:
+	$(MAKE) -f CMakeFiles/PGagoravai.dir/build.make CMakeFiles/PGagoravai.dir/Vector/Vec3.cpp.s
+.PHONY : Vector/Vec3.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... PGagoravai"
+	@echo "... Vector/Vec3.o"
+	@echo "... Vector/Vec3.i"
+	@echo "... Vector/Vec3.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

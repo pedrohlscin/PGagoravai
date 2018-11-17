@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/p/github/PGagoravai/Vector/Vec3.cpp">
+			<Option target="PGagoravai"/>
+		</Unit>
+		<Unit filename="/home/p/github/PGagoravai/Vector/Vec3.h">
+			<Option target="PGagoravai"/>
+		</Unit>
 		<Unit filename="/home/p/github/PGagoravai/main.cpp">
 			<Option target="PGagoravai"/>
 		</Unit>
