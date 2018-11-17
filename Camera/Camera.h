@@ -8,6 +8,7 @@
 #include "../Vector/Vec3.h"
 
 #include "../Vector/Vec3.h"
+#include "Ray.h"
 
 class Camera {
 private:
