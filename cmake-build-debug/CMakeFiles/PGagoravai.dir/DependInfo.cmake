@@ -4,7 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/p/github/PGagoravai/main.cpp" "/home/p/github/PGagoravai/cmake-build-debug/CMakeFiles/PGagoravai.dir/main.cpp.o"
+  "/home/guila/GitHub Projects/PGagoravai/Scene/Camera.cpp" "/home/guila/GitHub Projects/PGagoravai/cmake-build-debug/CMakeFiles/PGagoravai.dir/Scene/Camera.cpp.o"
+  "/home/guila/GitHub Projects/PGagoravai/main.cpp" "/home/guila/GitHub Projects/PGagoravai/cmake-build-debug/CMakeFiles/PGagoravai.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

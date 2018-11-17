@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/PGagoravai.dir/main.cpp.o"
+  "CMakeFiles/PGagoravai.dir/Scene/Camera.cpp.o"
   "PGagoravai.pdb"
   "PGagoravai"
 )
