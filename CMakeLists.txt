@@ -3,4 +3,4 @@ project(PGagoravai)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(PGagoravai main.cpp Camera/Camera.cpp Camera/Camera.h)
+add_executable(PGagoravai main.cpp Camera/Camera.cpp Camera/Camera.h Vector/Vec3.cpp Vector/Vec3.h)

@@ -1,4 +1,0 @@
-/home/guila/Downloads/cmake-3.13.0-rc2/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/guila/GitHub Projects/PGagoravai"
--- Configuring done
--- Generating done
--- Build files have been written to: /home/guila/GitHub Projects/PGagoravai/cmake-build-debug
