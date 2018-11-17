@@ -43,6 +43,7 @@ public:
 
     inline float length() const;
     inline float squared_length() const;
+
     inline void make_unit_vector();
 
     inline float dotProduct(const Vec3 &v1, const Vec3 &v2);

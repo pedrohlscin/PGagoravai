@@ -94,7 +94,6 @@ inline Vec3& Vec3::operator/=(const float t) {
 
 // Util functions
 
-
 inline float Vec3::length() const {
     return sqrt(e[0]*e[0] + e[1]*e[1] + e[2]*e[2]);
 }
@@ -119,9 +118,6 @@ inline Vec3 Vec3::cross(const Vec3 &v1, const Vec3 &v2) {
 }
 
 Vec3 Vec3::getUnitVector(Vec3 v) {
-    float a = 3.0;
-    Vec3 t = v*a;
-    return Vec3(v.getCordX()/v.length(), v.getCordY()/v.length(), v.getCordZ()/v.length());
+    return v/v.length();
 }
-
 

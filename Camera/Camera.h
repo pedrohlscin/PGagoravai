@@ -7,6 +7,8 @@
 
 #include "../Vector/Vec3.h"
 
+#include "../Vector/Vec3.h"
+
 class Camera {
 private:
     Vec3 position;
