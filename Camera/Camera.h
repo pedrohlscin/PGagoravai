@@ -6,6 +6,8 @@
 #define PGAGORAVAI_CAMERA_H
 
 
+#include "../Vector/Vec3.h"
+
 class Camera {
 private:
     Vec3 position;
