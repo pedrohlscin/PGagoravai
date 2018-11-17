@@ -5,6 +5,10 @@
 #include "../Vector/Vec3.h"
 
 class Ray {
+private:
+    Vec3 A;
+    Vec3 B;
+
 public:
     Ray() {}
     Ray(const Vec3& a, const Vec3& b) { A = a; B = b; }
@@ -12,9 +16,6 @@ public:
     Vec3 direction() const    { return B; }
     Vec3 positionAt(float t) const { return A + t*B;}
 
-private:
-    Vec3 A;
-    Vec3 B;
 };
 
 #endif //PG_RAY_H
