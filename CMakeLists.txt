@@ -14,5 +14,9 @@ add_executable(PGagoravai main.cpp
         Scene/Scene.h
         Object/Object.cpp
         Object/Sphere.cpp
-        Object/Geometry.h Object/Object.h Object/Material.cpp Object/Material.h Object/ObjectIntersectionInfo.h)
+        Object/Geometry.h
+        Object/Object.h
+        Object/Material.cpp
+        Object/Material.h
+        Object/ObjectIntersectionInfo.h)
 
