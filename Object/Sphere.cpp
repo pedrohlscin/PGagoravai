@@ -8,7 +8,7 @@ class sphere: public object  {
 private:
     vec3 center;
     float radius;
-    material *sphereMaterial;
+
 
 public:
     sphere() {}
