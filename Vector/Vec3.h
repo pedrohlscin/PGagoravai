@@ -5,38 +5,50 @@
 #include <stdlib.h>
 #include <iostream>
 
-class vec3  {
-
+class Vec3  {
+private:
+    float e[3];
 
 public:
-    vec3() {}
-    vec3(float e0, float e1, float e2) { e[0] = e0; e[1] = e1; e[2] = e2; }
-    inline float getCordX() const { return e[0]; }
-    inline float getCordY() const { return e[1]; }
-    inline float getCordZ() const { return e[2]; }
-    inline float getColorR() const { return e[0]; }
-    inline float getColorG() const { return e[1]; }
-    inline float getColorB() const { return e[2]; }
+    Vec3() {}
+    Vec3(float e0, float e1, float e2);
+    inline float getCordX() const ;
+    inline float getCordY() const;
+    inline float getCordZ() const;
+    inline float getColorR() const ;
+    inline float getColorG() const;
+    inline float getColorB() const;
+
 
     // Overloading useful unary operators
-    inline vec3 operator-() const { return {-e[0], e[1], e[2]}; }
-    inline float operator[](int i) const { return e[i]; }
-    inline float& operator[](int i) { return e[i]; };
+    inline Vec3 operator-() const;
+    inline float operator[](int i) const;
+    inline float& operator[](int i);
 
 
-    inline vec3& operator+=(const vec3 &v2);
-    inline vec3& operator-=(const vec3 &v2);
-    inline vec3& operator*=(const vec3 &v2);
-    inline vec3& operator/=(const vec3 &v2);
-    inline vec3& operator*=(const float t);
-    inline vec3& operator/=(const float t);
+    friend Vec3 operator+(const Vec3 &v1, const Vec3 &v2);
+    friend Vec3 operator-(const Vec3 &v1, const Vec3 &v2);
+    friend Vec3 operator*(const Vec3 &v1, const Vec3 &v2);
+    friend Vec3 operator/(const Vec3 &v1, const Vec3 &v2);
+    friend Vec3 friend operator*(float t, const Vec3 &v);
+    friend Vec3 operator/(Vec3 v, float t);
+    friend Vec3 operator*(const Vec3 &v, float t);
 
-    inline float length() const { return sqrt(e[0]*e[0] + e[1]*e[1] + e[2]*e[2]); }
-    inline float squared_length() const { return e[0]*e[0] + e[1]*e[1] + e[2]*e[2]; }
+    inline Vec3& operator+=(const Vec3 &v2);
+    inline Vec3& operator-=(const Vec3 &v2);
+    inline Vec3& operator*=(const Vec3 &v2);
+    inline Vec3& operator/=(const Vec3 &v2);
+    inline Vec3& operator*=(const float t);
+    inline Vec3& operator/=(const float t);
+
+    inline float length() const;
+    inline float squared_length() const;
     inline void make_unit_vector();
 
+    inline float dotProduct(const Vec3 &v1, const Vec3 &v2);
+    inline Vec3 cross(const Vec3 &v1, const Vec3 &v2);
+    inline Vec3 getUnitVector(Vec3 v);
 
-    float e[3];
 };
 
 
