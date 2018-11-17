@@ -1,11 +1,11 @@
 #ifndef PG_RAY_H
 #define PG_RAY_H
 
-#include "../Vector/vec3.cpp"
+#include "../Vector/Vec3.cpp"
 
 class Ray {
 public:
-    Ray() {}
+    default Ray() {}
     Ray(const Vec3& a, const Vec3& b) { A = a; B = b; }
     Vec3 origin() const       { return A; }
     Vec3 direction() const    { return B; }
