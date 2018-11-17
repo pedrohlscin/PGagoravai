@@ -13,9 +13,11 @@ struct hitInfo {
 };
 
 class object  {
+private:
+    material *sphereMaterial;
+
 public:
     virtual bool hit(const ray& r, float t_min, float t_max, hitInfo& rec) const = 0;
-
 
 };
 
