@@ -1,25 +1,31 @@
-#ifndef PG_HITABLE_H
-#define PG_HITABLE_H
+//
+// Created by guila on 17/11/18.
+//
 
-#include "../Camera/Ray.h"
+#ifndef PGAGORAVAI_OBJECT_H
+#define PGAGORAVAI_OBJECT_H
 
-class material;
+#include "../Vector/Vec3.h"
+#include "Material.h"
+#include "Geometry.h"
+#include "ObjectIntersectionInfo.h"
 
-struct hitInfo {
-    float THit;
-    vec3 HitVector;
-    vec3 normal;
-    material *surfaceMaterial;
-};
+class Geometry;
+class Material;
+class ObjectIntersectionInfo;
 
-class object  {
+class Object  {
+
 private:
-    material *sphereMaterial;
+    Material *material;
+    Geometry* geometry;
 
 public:
-    virtual bool hit(const ray& r, float t_min, float t_max, hitInfo& rec) const = 0;
+    Object(Geometry* geometry, Material* material1);
 
+    bool intersect(const Ray& r, ObjectIntersectionInfo* info = nullptr);
 };
 
 
-#endif //PG_HITABLE_H
+
+#endif //PGAGORAVAI_OBJECT_H
