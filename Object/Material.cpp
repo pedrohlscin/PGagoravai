@@ -3,3 +3,11 @@
 //
 
 #include "Material.h"
+
+Material::Material(Vec3 color, float ks, float kd, float ke, float alpha) {
+    this->color = color;
+    this->ke = ke;
+    this->alpha = alpha;
+    this->ks = ks;
+    this->kd = kd;
+}
