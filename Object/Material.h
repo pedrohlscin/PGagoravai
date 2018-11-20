@@ -9,13 +9,13 @@
 #include "../Vector/Vec3.h"
 
 class Material {
-private:
+public:
     Vec3 color;
     float ks;
     float kd;
-    float ke;
     float alpha;
-public:
+    float ke;
+
     Material(Vec3 color, float ks, float kd, float ke, float alpha);
 };
 

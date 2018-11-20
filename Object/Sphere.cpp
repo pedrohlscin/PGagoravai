@@ -36,6 +36,7 @@ bool Sphere::intersect(const Ray &r, ObjectIntersectionInfo *info) const {
             info->t = secondRoot;
             info->pHit = r.positionAt(info->t);
             info->normal = (info->pHit - center) / radius;
+            info->o = (Object *) this;
             return true;
 
         }

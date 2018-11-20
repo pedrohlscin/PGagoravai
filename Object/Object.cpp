@@ -9,3 +9,15 @@ Object::Object(Geometry *geometry, Material *material) {
 bool Object::intersect(const Ray &r, ObjectIntersectionInfo *info) {
     return this->geometry->intersect(r, info);
 }
+
+Material *Object::getMaterial() {
+    return this->material;
+}
+
+bool Object::isLight() {
+    return this->material->ke > 0;
+}
+
+Vec3 Object::getPoint() {
+    return this->geometry->getPoint();
+}
