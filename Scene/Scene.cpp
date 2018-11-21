@@ -13,21 +13,21 @@ void Scene::add(Object* object){
 }
 
 Vec3 Scene::trace(const Ray &r, int recursionLevel) const {
-    ObjectIntersectionInfo *oii;
+    ObjectIntersectionInfo oii;
     Vec3 objectColor{0,0,0};
 
-    if (this->intersect(r, oii)) {
-        Object *objectIntersected = oii->o;
+    if (this->intersect(r, &oii)) {
+        Object *objectIntersected = oii.o;
         Material *m = objectIntersected->getMaterial();
         Vec3 colorSum{0,0,0};
         for (auto obj: this->objects){
             // Checar se ta batendo nele mesmo - Tem que fazer
-            Ray objetToLight = {oii->pHit, obj->getPoint()};
+            Ray objetToLight = {oii.pHit, obj->getPoint()};
             if(obj->isLight() && !this->intersect(objetToLight)){
                 Vec3 cL = obj->getMaterial()->ke * obj->getMaterial()->color;
                 Vec3 dC = objectIntersected->getMaterial()->kd * objectIntersected->getMaterial()->color;
                 Vec3 v;
-                float nl = v.dotProduct(oii->normal, objetToLight.direction());
+                float nl = v.dotProduct(oii.normal, objetToLight.direction());
                 float nv = v.dotProduct(r.direction(), objetToLight.direction());
                 Vec3 diff = cL * dC * nl;
                 Vec3 spec = cL * nv;
@@ -36,7 +36,7 @@ Vec3 Scene::trace(const Ray &r, int recursionLevel) const {
 
             }
         }
-        objectColor = oii->o->getMaterial()->color * oii->o->getMaterial()->ke + colorSum;
+        objectColor = oii.o->getMaterial()->color * oii.o->getMaterial()->ke + colorSum;
         return objectColor;
     }
     return {0.0,0.0,0.0};
