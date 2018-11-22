@@ -24,6 +24,11 @@ Ray Camera::getRay(double x, double y, int width, int height) const {
     double pointY = -halfWidth  * (2.0 * ((y/height) - 0.5));
     double pointZ = -this->near;
 
+    //mudando a base
+    pointX = this->axisX.getCordX() * pointX + this->axisX.getCordY() * pointY + this->axisX.getCordZ() * pointZ;
+    pointY = this->axisY.getCordX() * pointX + this->axisY.getCordY() * pointY + this->axisY.getCordZ() * pointZ;
+    pointZ = this->axisZ.getCordX() * pointX + this->axisZ.getCordY() * pointY + this->axisZ.getCordZ() * pointZ;
+
     Vec3 point(pointX, pointY, pointZ);
 
 
