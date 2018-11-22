@@ -21,8 +21,8 @@ bool Sphere::intersect(const Ray &r, ObjectIntersectionInfo *info) const {
     double deltha = sde.getDeltha();
 
     if(deltha > 0){
-        double firstRoot = sde.getRoots()[0];
-        double secondRoot = sde.getRoots()[1];
+        double firstRoot = sde.getRoots().first;
+        double secondRoot = sde.getRoots().second;
 
         Vec3 pointOne = r.positionAt(firstRoot);
         Vec3 pointTwo = r.positionAt(secondRoot);
@@ -36,7 +36,6 @@ bool Sphere::intersect(const Ray &r, ObjectIntersectionInfo *info) const {
             info->t = secondRoot;
             info->pHit = r.positionAt(info->t);
             info->normal = (info->pHit - center) / radius;
-            info->o = (Object *) this;
             return true;
 
         }

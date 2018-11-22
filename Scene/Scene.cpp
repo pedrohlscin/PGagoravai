@@ -23,7 +23,7 @@ Vec3 Scene::trace(const Ray &r, int recursionLevel) const {
         for (auto obj: this->objects){
             // Checar se ta batendo nele mesmo - Tem que fazer
             Ray objetToLight = {oii.pHit, obj->getPoint()};
-            if(obj->isLight() && !this->intersect(objetToLight)){
+            if(obj != objectIntersected && obj->isLight() && !this->intersect(objetToLight)){
                 Vec3 cL = obj->getMaterial()->ke * obj->getMaterial()->color;
                 Vec3 dC = objectIntersected->getMaterial()->kd * objectIntersected->getMaterial()->color;
                 Vec3 v;

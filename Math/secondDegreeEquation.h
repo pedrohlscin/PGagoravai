@@ -7,19 +7,25 @@
 
 
 
+#include <cstdio>
+#include <cmath>
+#include <utility>
+
+
 class secondDegreeEquation {
 private:
     double a;
     double b;
     double c;
     double deltha;
-    double *roots;
+    double root1;
+    double root2;
 public:
     secondDegreeEquation(double a, double b, double c);
 
     double getDeltha();
 
-    double *getRoots();
+    std::pair<double, double> getRoots();
 
 
 };

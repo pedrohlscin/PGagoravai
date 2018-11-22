@@ -2,9 +2,6 @@
 // Created by ggfl on 07/11/18.
 //
 
-#include <cstdio>
-#include <cmath>
-
 #include "secondDegreeEquation.h"
 
 secondDegreeEquation::secondDegreeEquation(double a, double b, double c) {
@@ -13,18 +10,17 @@ secondDegreeEquation::secondDegreeEquation(double a, double b, double c) {
     this->c = c;
     this->deltha = (b*b) - (4.0*a*c);
     if(deltha > 0){
-        this->roots = new double[2];
-        roots[0] = (-b - sqrt(deltha))/(2.0*a);
-        roots[1] = (-b + sqrt(deltha))/(2.0*a);
+        this->root1 = (-b - sqrt(deltha))/(2.0*a);
+        this->root2 = (-b + sqrt(deltha))/(2.0*a);
     }
 
-    if(deltha < 0){
-        this->roots = nullptr;
+    else if(deltha < 0){
+        root1 = root2 = 0;
     }
 
     else{
-        this->roots = new double[1];
-        roots[0] = (-b - sqrt(deltha))/(2.0*a);
+        root1 = (-b - sqrt(deltha))/(2.0*a);
+        root2  = (-b - sqrt(deltha))/(2.0*a);
     }
 
 }
@@ -33,6 +29,6 @@ double secondDegreeEquation::getDeltha() {
     return this->deltha;
 }
 
-double *secondDegreeEquation::getRoots() {
-    return this->roots;
+std::pair<double, double> secondDegreeEquation::getRoots() {
+    return std::make_pair(root1, root2);
 }

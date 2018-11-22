@@ -1,22 +1,29 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.13)
 project(PGagoravai)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 
-add_executable(PGagoravai main.cpp
+include_directories(Camera)
+include_directories(Math)
+include_directories(Object)
+include_directories(Scene)
+include_directories(Vector)
+
+add_executable(PGagoravai
         Camera/Camera.cpp
         Camera/Camera.h
-        Vector/Vec3.cpp
-        Vector/Vec3.h
+        Camera/Ray.h
         Math/secondDegreeEquation.cpp
         Math/secondDegreeEquation.h
-        Scene/Scene.cpp
-        Scene/Scene.h
-        Object/Object.cpp
-        Object/Sphere.cpp
         Object/Geometry.h
-        Object/Object.h
         Object/Material.cpp
         Object/Material.h
-        Object/ObjectIntersectionInfo.h)
-
+        Object/Object.cpp
+        Object/Object.h
+        Object/ObjectIntersectionInfo.h
+        Object/Sphere.cpp
+        Scene/Scene.cpp
+        Scene/Scene.h
+        Vector/Vec3.cpp
+        Vector/Vec3.h
+        main.cpp)
