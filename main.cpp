@@ -43,16 +43,17 @@ int main() {
     int height = 200;
 
     //Câmera
+    Vec3 cTarget{0,0,1};
     Vec3 cPos {0,0,0};
     Vec3 cUp{0,1,0};
-    Vec3 cTarget{0,0,1};
+
     double fov = 40;
     double near = 5;
 
     Camera c(cPos, fov, cTarget, near, cUp, width, height);
 
     // Objeto
-    Sphere sp({0,0,1},0.5);
+    Sphere sp({0,-0.5,1},0.5);
     Material luca({100,100,100},0.2,0.2,0.2,0.3);
 
     Object o(&sp, &luca);

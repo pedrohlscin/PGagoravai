@@ -18,17 +18,17 @@ Camera::Camera(Vec3 position, double fov, Vec3 target, double near, Vec3 up, int
 Ray Camera::getRay(double x, double y, int width, int height) const {
     double halfHeight = this->near * tanf(this->fov/2);
     double halfWidth = aspect * halfHeight;
-    // Erro pode estar aqui - Temos que mudar a base
+
     double pointX =  halfWidth  * (2.0 * (x + 0.5) - 1);
     double pointY =  halfHeight * (1 - 2.0 * (y + 0.5 ));
     double pointZ = -1;
 
     //mudando a base
-    pointX = this->axisX.getCordX() * pointX + this->axisX.getCordY() * pointY + this->axisX.getCordZ() * pointZ;
-    pointY = this->axisY.getCordX() * pointX + this->axisY.getCordY() * pointY + this->axisY.getCordZ() * pointZ;
-    pointZ = this->axisZ.getCordX() * pointX + this->axisZ.getCordY() * pointY + this->axisZ.getCordZ() * pointZ;
+    double pX = this->axisX.getCordX() * pointX + this->axisX.getCordY() * pointY + this->axisX.getCordZ() * pointZ;
+    double pY = this->axisY.getCordX() * pointX + this->axisY.getCordY() * pointY + this->axisY.getCordZ() * pointZ;
+    double pZ = this->axisZ.getCordX() * pointX + this->axisZ.getCordY() * pointY + this->axisZ.getCordZ() * pointZ;
 
-    Vec3 point(pointX, pointY, pointZ);
+    Vec3 point(pX, pY, pZ);
 
 
     return Ray(position, (point-position).getUnitVector());
