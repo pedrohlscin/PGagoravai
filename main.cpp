@@ -16,22 +16,23 @@ void saveStringToFile(std::string imagePBM){
 }
 
 std::string imageRender(int sizeX, int sizeY, int sizeZ, Camera cam, Scene c ){
-    std::string stringedFile;
+    std::string stringedFile = "";
     stringedFile.append("P3\n" + std::to_string(sizeX) + " " + std::to_string(sizeY) + "\n255\n");
     Vec3 col(0, 0, 0);
-    for (int j = sizeY-1; j >= 0; j--) {
-        for (int i = 0; i < sizeX; i++) {
-
-                float u = float(i) / float(sizeX);
-                float v = float(j) / float(sizeY);
-                Ray r = cam.getRay(u, v, sizeX, sizeY);
-                col = c.trace(r);
-                int ir = int(col[0]);
-                int ig = int(col[1]);
-                int ib = int(col[2]);
-                stringedFile.append(std::to_string(ir) + " " + std::to_string(ig) + " " + std::to_string(ib) + "\n");
+    for (int i = 0; i < sizeY; i++) {
+        for (int j = 0; j < sizeX; j++) {
+            float u = float(j) / float(sizeX);
+            float v = float(i) / float(sizeY);
+            //std::cout << u << " " << v << std::endl;
+            Ray r = cam.getRay(u, v, sizeX, sizeY);
+            col = c.trace(r);
+            int ir = int(col[0]);
+            int ig = int(col[1]);
+            int ib = int(col[2]);
+            stringedFile.append(std::to_string(ir) + " " + std::to_string(ig) + " " + std::to_string(ib) + "\n");
         }
     }
+
     return stringedFile;
 }
 
@@ -48,13 +49,13 @@ int main() {
     Vec3 cUp{0,1,0};
 
     double fov = 40;
-    double near = 5;
+    double near = 1;
 
     Camera c(cPos, fov, cTarget, near, cUp, width, height);
 
     // Objeto
-    Sphere sp({0,-0.5,1},0.5);
-    Material luca({100,100,100},0.2,0.2,0.2,0.3);
+    Sphere sp({0,0,4},0.5);
+    Material luca({200,80,13},0.2,0.2,0.7,0.3);
 
     Object o(&sp, &luca);
 

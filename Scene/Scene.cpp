@@ -13,6 +13,7 @@ void Scene::add(Object* object){
 }
 
 Vec3 Scene::trace(const Ray &r, int recursionLevel) const {
+
     ObjectIntersectionInfo oii;
     Vec3 objectColor{0,0,0};
 
@@ -39,7 +40,7 @@ Vec3 Scene::trace(const Ray &r, int recursionLevel) const {
         objectColor = oii.o->getMaterial()->color * oii.o->getMaterial()->ke + colorSum;
         return objectColor;
     }
-    return {255,255,255};
+    return {0,0,0};
 }
 
 bool Scene::intersect(const Ray &r, ObjectIntersectionInfo *info) const {
