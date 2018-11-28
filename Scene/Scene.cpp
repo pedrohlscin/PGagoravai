@@ -38,7 +38,7 @@ Vec3 Scene::trace(const Ray &r, int recursionLevel) const {
 
             }
         }
-        objectColor = oii.o->getMaterial()->getNormalizedColor() * oii.o->getMaterial()->ke + colorSum;
+        objectColor = objectIntersected->getMaterial()->getNormalizedColor() * oii.o->getMaterial()->ke + colorSum;
         objectColor.e[0] = std::min(objectColor.getCordX(), 1.0f);
         objectColor.e[1] = std::min(objectColor.getCordY(), 1.0f);
         objectColor.e[2] = std::min(objectColor.getCordZ(), 1.0f);

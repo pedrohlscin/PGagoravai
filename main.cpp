@@ -3,6 +3,7 @@
 #include "Object/Object.h"
 #include "Camera/Camera.h"
 #include "Scene/Scene.h"
+#include <cstdlib>
 
 
 
@@ -19,6 +20,7 @@ std::string imageRender(int sizeX, int sizeY, int sizeZ, Camera cam, Scene c ){
     std::string stringedFile = "";
     stringedFile.append("P3\n" + std::to_string(sizeX) + " " + std::to_string(sizeY) + "\n255\n");
     Vec3 col(0, 0, 0);
+    int samples=3;
     //Iterando ao longo dos pixels e renderizando
     for (int i = 0; i < sizeY; i++) {
         for (int j = 0; j < sizeX; j++) {
@@ -27,7 +29,6 @@ std::string imageRender(int sizeX, int sizeY, int sizeZ, Camera cam, Scene c ){
             //std::cout << u << " " << v << std::endl;
             Ray r = cam.getRay(u, v, sizeX, sizeY);
             col = c.trace(r);
-            col/=4;
             int ir = int(col[0]);
             int ig = int(col[1]);
             int ib = int(col[2]);
@@ -63,7 +64,7 @@ int main() {
     Object o(&sp, &luca);
 
     Sphere floor({0,-1.5,4},0.5);
-    Material floor_mat({255,255,255},0.1,0.2,1.0,0.3);
+    Material floor_mat({0,0,0},0.1,0.2,1.0,0.3);
     Object floor_obj(&floor, &floor_mat);
 
     //Cena
