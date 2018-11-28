@@ -21,11 +21,16 @@ std::string imageRender(int sizeX, int sizeY, int sizeZ, Camera cam, Scene c ){
     Vec3 col(0, 0, 0);
     for (int i = 0; i < sizeY; i++) {
         for (int j = 0; j < sizeX; j++) {
-            float u = float(j) / float(sizeX);
-            float v = float(i) / float(sizeY);
-            //std::cout << u << " " << v << std::endl;
-            Ray r = cam.getRay(u, v, sizeX, sizeY);
-            col = c.trace(r);
+            for(double frag_i = i; frag_i < i+1.0; frag_i += 0.5){
+                for(double frag_j = j; frag_j <= j + 1.0; frag_j += 0.5){
+                    float u = float(frag_j) / float(sizeX);
+                    float v = float(frag_i) / float(sizeY);
+                    //std::cout << u << " " << v << std::endl;
+                    Ray r = cam.getRay(u, v, sizeX, sizeY);
+                    col += c.trace(r);
+                }
+            }
+            col/=4;
             int ir = int(col[0]);
             int ig = int(col[1]);
             int ib = int(col[2]);

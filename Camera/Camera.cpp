@@ -31,6 +31,6 @@ Ray Camera::getRay(double x, double y, int width, int height) const {
     double pZ = this->axisX.getCordZ() * pointX + this->axisY.getCordZ() * pointY + this->axisZ.getCordZ() * pointZ;
 
     Vec3 point(pX, pY, pZ);
-    std::cout << pX << " " << pY  << " " << pZ << std::endl;
+    //std::cout << pX << " " << pY  << " " << pZ << std::endl;
     return Ray(this->position, point.getUnitVector() /*(point-this->position).getUnitVector()*/);
 }
