@@ -3,7 +3,7 @@
 //
 
 #include "secondDegreeEquation.h"
-
+//Apenas automatizando e organizando resolução de equação de segundo grau
 secondDegreeEquation::secondDegreeEquation(double a, double b, double c) {
     this->a = a;
     this->b = b;
