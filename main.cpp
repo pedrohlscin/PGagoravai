@@ -3,6 +3,7 @@
 #include "Object/Object.h"
 #include "Camera/Camera.h"
 #include "Scene/Scene.h"
+#include <cstdlib>
 
 
 
@@ -19,20 +20,21 @@ std::string imageRender(int sizeX, int sizeY, int sizeZ, Camera cam, Scene c ){
     std::string stringedFile = "";
     stringedFile.append("P3\n" + std::to_string(sizeX) + " " + std::to_string(sizeY) + "\n255\n");
     Vec3 col(0, 0, 0);
+    int samples=3;
     //Iterando ao longo dos pixels e renderizando
     for (int i = 0; i < sizeY; i++) {
         for (int j = 0; j < sizeX; j++) {
             //Supersampling
-            for(double frag_i = i; frag_i < i+1.0; frag_i += 0.5){
-                for(double frag_j = j; frag_j <= j + 1.0; frag_j += 0.5){
-                    float u = float(frag_j) / float(sizeX);
-                    float v = float(frag_i) / float(sizeY);
+            for(int k=0; k<samples; k++){
+                    float random = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+                    float u = (i+random) / float(sizeX);
+                    float v = (j+random) / float(sizeY);
                     Ray r = cam.getRay(u, v, sizeX, sizeY);
                     col += c.trace(r);
-                }
+
             }
             //Calculando média do pixel
-            col/=4;
+            col/=samples;
             int ir = int(col[0]);
             int ig = int(col[1]);
             int ib = int(col[2]);
