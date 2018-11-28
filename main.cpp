@@ -64,7 +64,7 @@ int main() {
     Object o(&sp, &luca);
 
     Sphere floor({0,-1.5,4},0.5);
-    Material floor_mat({0,0,0},0.1,0.2,1.0,0.3);
+    Material floor_mat({24,55,55},0.1,0.2,1.0,0.3);
     Object floor_obj(&floor, &floor_mat);
 
     //Cena
