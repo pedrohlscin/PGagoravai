@@ -11,3 +11,9 @@ Material::Material(Vec3 color, float ks, float kd, float ke, float alpha) {
     this->ks = ks;
     this->kd = kd;
 }
+
+Vec3 Material::getNormalizedColor(){
+    return this->color/255;
+}
+
+

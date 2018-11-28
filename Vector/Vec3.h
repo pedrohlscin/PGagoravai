@@ -7,9 +7,9 @@
 
 class Vec3  {
 private:
-    float e[3];
 
 public:
+    float e[3];
     Vec3();
     Vec3(float e0, float e1, float e2);
     float getCordX() const ;

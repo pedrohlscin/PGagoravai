@@ -17,6 +17,8 @@ public:
     float ke;
 
     Material(Vec3 color, float ks, float kd, float ke, float alpha);
+
+    Vec3 getNormalizedColor();
 };
 
 

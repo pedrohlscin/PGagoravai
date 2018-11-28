@@ -26,11 +26,11 @@ Vec3 Scene::trace(const Ray &r, int recursionLevel) const {
             Ray objetToLight = {oii.pHit, obj->getPoint()};
             if(obj != objectIntersected && obj->isLight() && !this->intersect(objetToLight)){
                 //Calculando cores em base em componentes
-                Vec3 cL = obj->getMaterial()->ke * obj->getMaterial()->color;
-                Vec3 dC = objectIntersected->getMaterial()->kd * objectIntersected->getMaterial()->color;
+                Vec3 cL = obj->getMaterial()->ke * obj->getMaterial()->getNormalizedColor();
+                Vec3 dC = objectIntersected->getMaterial()->kd * objectIntersected->getMaterial()->getNormalizedColor();
                 Vec3 v;
-                float nl = v.dotProduct(oii.normal, objetToLight.direction());
-                float nv = v.dotProduct(r.direction(), objetToLight.direction());
+                float nl = std::max(0.0f, v.dotProduct(  oii.normal.getUnitVector(), objetToLight.direction().getUnitVector()     ));
+                float nv = std::max(0.0f,v.dotProduct(   r.direction().getUnitVector(), objetToLight.direction().getUnitVector()  ));
                 Vec3 diff = cL * dC * nl;
                 Vec3 spec = cL * nv;
 
@@ -38,7 +38,11 @@ Vec3 Scene::trace(const Ray &r, int recursionLevel) const {
 
             }
         }
-        objectColor = oii.o->getMaterial()->color * oii.o->getMaterial()->ke + colorSum;
+        objectColor = oii.o->getMaterial()->getNormalizedColor() * oii.o->getMaterial()->ke + colorSum;
+        objectColor.e[0] = std::min(objectColor.getCordX(), 1.0f);
+        objectColor.e[1] = std::min(objectColor.getCordY(), 1.0f);
+        objectColor.e[2] = std::min(objectColor.getCordZ(), 1.0f);
+        objectColor = objectColor*255;
         return objectColor;
     }
     return {0,0,0};

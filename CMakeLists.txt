@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 project(PGagoravai)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
 include_directories(Camera)
 include_directories(Math)
