@@ -19,26 +19,27 @@ Vec3 Scene::trace(const Ray &r, int recursionLevel) const {
 
     if (this->intersect(r, &oii)) {
         Object *objectIntersected = oii.o;
-        Material *m = objectIntersected->getMaterial();
         Vec3 colorSum{0,0,0};
         for (auto obj: this->objects){
-            // Checar se ta batendo nele mesmo - Tem que fazer
-            Ray objetToLight = {oii.pHit, obj->getPoint()};
-            if(obj != objectIntersected && obj->isLight() && !this->intersect(objetToLight)){
+
+            Vec3 vDir = (obj->getPoint() - oii.pHit).getUnitVector();
+            Ray objetToLight = {oii.pHit + 0.001f*oii.normal,  vDir};
+            ObjectIntersectionInfo oii2;
+            if(obj != objectIntersected && obj->isLight() && (!this->intersect(objetToLight, &oii2) || oii2.o == obj) ){
                 //Calculando cores em base em componentes
                 Vec3 cL = obj->getMaterial()->ke * obj->getMaterial()->getNormalizedColor();
                 Vec3 dC = objectIntersected->getMaterial()->kd * objectIntersected->getMaterial()->getNormalizedColor();
                 Vec3 v;
                 float nl = std::max(0.0f, v.dotProduct(  oii.normal.getUnitVector(), objetToLight.direction().getUnitVector()     ));
-                float nv = std::max(0.0f,v.dotProduct(   r.direction().getUnitVector(), objetToLight.direction().getUnitVector()  ));
+                float nv = std::max(0.0f, v.dotProduct(-r.direction().getUnitVector(), 2*nl*oii.normal.getUnitVector() - objetToLight.direction().getUnitVector()  ));
                 Vec3 diff = cL * dC * nl;
-                Vec3 spec = cL * nv;
+                Vec3 spec = cL * pow(nv, objectIntersected->getMaterial()->alpha) * objectIntersected->getMaterial()->ks;
 
                 colorSum += diff + spec;
 
             }
         }
-        objectColor = objectIntersected->getMaterial()->getNormalizedColor() * oii.o->getMaterial()->ke + colorSum;
+        objectColor = objectIntersected->getMaterial()->getNormalizedColor() * objectIntersected->getMaterial()->ke + colorSum;
         objectColor.e[0] = std::min(objectColor.getCordX(), 1.0f);
         objectColor.e[1] = std::min(objectColor.getCordY(), 1.0f);
         objectColor.e[2] = std::min(objectColor.getCordZ(), 1.0f);

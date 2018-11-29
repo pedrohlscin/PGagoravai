@@ -32,7 +32,7 @@ bool Sphere::intersect(const Ray &r, ObjectIntersectionInfo *info) const {
         aux = r.origin() - pointTwo;
         double distPointTwoToRayOrigin = sqrt(originToCenter.dotProduct(aux, aux));
 
-        if(distPointOneToRayOrigin > distPointTwoToRayOrigin){
+        if(distPointOneToRayOrigin > distPointTwoToRayOrigin && secondRoot > 0){
             if(info != NULL){
                 info->t = secondRoot;
                 info->pHit = r.positionAt(info->t);
@@ -41,9 +41,9 @@ bool Sphere::intersect(const Ray &r, ObjectIntersectionInfo *info) const {
             return true;
 
         }
-        if(distPointTwoToRayOrigin > distPointOneToRayOrigin){
+        if(distPointTwoToRayOrigin > distPointOneToRayOrigin && firstRoot > 0){
             if(info != NULL){
-                info->t = secondRoot;
+                info->t = firstRoot;
                 info->pHit = r.positionAt(info->t);
                 info->normal = (info->pHit - center) / radius;
             }
