@@ -24,11 +24,15 @@ std::string imageRender(int sizeX, int sizeY, int sizeZ, Camera cam, Scene c ){
     //Iterando ao longo dos pixels e renderizando
     for (int i = 0; i < sizeY; i++) {
         for (int j = 0; j < sizeX; j++) {
-            float u = float(j) / float(sizeX);
-            float v = float(i) / float(sizeY);
-            //std::cout << u << " " << v << std::endl;
-            Ray r = cam.getRay(u, v, sizeX, sizeY);
-            col = c.trace(r);
+            for(int k=0; k<samples; k++){
+                float random = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+                float u = (i+random) / float(sizeX);
+                float v = (j+random) / float(sizeY);
+                Ray r = cam.getRay(u, v, sizeX, sizeY);
+                col += c.trace(r);
+            }
+
+            col/=samples;
             int ir = int(col[0]);
             int ig = int(col[1]);
             int ib = int(col[2]);
@@ -86,11 +90,6 @@ int main() {
     Scene sc;
     sc.add(&o1);
     sc.add(&o2);
-    sc.add(&o3);
-    sc.add(&o4);
-    sc.add(&o5);
-    sc.add(&o6);
-    sc.add(&o7);
     saveStringToFile(imageRender(width, height,10,c,sc));
 
     return 0;
