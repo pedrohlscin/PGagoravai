@@ -21,7 +21,7 @@ private:
 public:
     Camera(Vec3 position, double fov, Vec3 target, double near, Vec3 up, int width, int height);
 
-    Ray getRay(double x, double y, int width, int height) const;
+    Ray getRay(double x, double y) const;
 };
 
 

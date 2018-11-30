@@ -15,14 +15,12 @@ Camera::Camera(Vec3 position, double fov, Vec3 target, double near, Vec3 up, int
     this->position = position;
 }
 
-Ray Camera::getRay(double x, double y, int width, int height) const {
+Ray Camera::getRay(double x, double y) const {
     double halfHeight = this->near * tanf(this->fov/2);
     double halfWidth = aspect * halfHeight;
 
     double pointX = 2 * (x - 0.5) * halfWidth;
     double pointY = 2 * (y - 0.5) * halfHeight;
-    //double pointX =  halfWidth  * (2.0 * (x + 0.5) - 1);
-    //double pointY =  halfHeight * (1 - 2.0 * (y + 0.5 ));
     double pointZ = -near;
 
     //mudando a base
@@ -31,6 +29,5 @@ Ray Camera::getRay(double x, double y, int width, int height) const {
     double pZ = this->axisX.getCordZ() * pointX + this->axisY.getCordZ() * pointY + this->axisZ.getCordZ() * pointZ;
 
     Vec3 point(pX, pY, pZ);
-    //std::cout << pX << " " << pY  << " " << pZ << std::endl;
-    return Ray(this->position, point.getUnitVector() /*(point-this->position).getUnitVector()*/);
+    return Ray(this->position, point.getUnitVector());
 }

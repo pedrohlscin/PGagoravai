@@ -29,7 +29,7 @@ std::string imageRender(int sizeX, int sizeY, int sizeZ, Camera cam, Scene c ){
                 float random = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                 float u = (j+random) / float(sizeX);
                 float v = (i+random) / float(sizeY);
-                Ray r = cam.getRay(u, v, sizeX, sizeY);
+                Ray r = cam.getRay(u, v);
                 col += c.trace(r);
             }
 
@@ -63,24 +63,19 @@ int main() {
     Camera c(cPos, fov, cTarget, near, cUp, width, height);
 
     // Objeto
-    Sphere sp({0,0,4},0.25);
+    Sphere sp({0,1,4},0.25);
     Material luca({255,255,255},0,0,1,1);
 
     Object o(&sp, &luca);
 
 
-    Sphere ceilling({0,-10000,0},9999);
+    Sphere ceilling({0,10000,0},9999);
     Material ceillingMat({255,0,0},0,1.0,0,1);
     Object ceillingObj(&ceilling, &ceillingMat);
 
-    Sphere floor({0,10000,0},9999);
+    Sphere floor({0,-10000,0},9999);
     Material floorMat({0,255,0},0,1.0,0,1);
     Object floorObj(&floor, &floorMat);
-
-    Sphere rWall({11000,0,4},9999);
-    Material rWallMat({0,0,255},0,1.0,0,1);
-    Object rWallObj(&rWall, &rWallMat);
-
 
 
     //Cena

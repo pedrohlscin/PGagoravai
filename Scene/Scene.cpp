@@ -40,8 +40,9 @@ Vec3 Scene::trace(const Ray &r, int recursionLevel) const {
                 Vec3 vDir = (obj->getPoint() - objectIntersectedInformation.pHit).getUnitVector();
                 Ray objetToLight = {objectIntersectedInformation.pHit, vDir};
                 ObjectIntersectionInfo oii2;
-                if(!this->intersect(objetToLight, &oii2) || oii2.o == obj)
+                if(!this->intersect(objetToLight, &oii2) || oii2.o == obj) {
                     colorSum += phong(obj, objectIntersectedInformation, r, objetToLight);
+                }
             }
         }
         objectColor = objectIntersected->getMaterial()->getNormalizedColor() * objectIntersected->getMaterial()->ke + colorSum;
