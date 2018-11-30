@@ -47,9 +47,9 @@ int main() {
     int width = 320;
     int height = 200;
 
-    //Câmera
-    Vec3 cTarget{0,0,0};
-    Vec3 cPos {0,0,-2};
+    //Camera
+    Vec3 cTarget{0,0,1};
+    Vec3 cPos {0,0,0};
     Vec3 cUp{0,1,0};
 
     double fov = 40;
@@ -58,39 +58,38 @@ int main() {
     Camera c(cPos, fov, cTarget, near, cUp, width, height);
 
     // Objeto
-    Sphere sp({10000,0,0},9999);
-    Sphere sp2({-10000,0,0},9999);
-    Sphere sp3({0,10000,0},9999);
-    Sphere sp4({0,-10000,0},9999);
-    Sphere sp5({10000,0,-10000},9999);
-    Sphere sp6({0,-1,0},1);
-    //ks kd ke alp
-    Sphere sp7({0,0,0},1);
+    Sphere sp({0,0,4},0.5);
+    Material luca({200,80,13},0.5,0.5,0.1,1);
 
-    Material luca({255,20,20},0,0.7,0,1.0);
-    Material luca2({255,20,20},0,0.7,0,1.0);
-    Material luca3({20,255,20},0,0.7,0,1.0);
-    Material luca4({20,20,255},0,0.7,0,1.0);
-    Material luca5({100,100,100},0,0.7,0,1.0);
+    Object o(&sp, &luca);
 
-    Material luca6({145,155,155},0.0,0.7,0.2,1.0);
-    Material luca7({255,255,255},1.0,0.0,0,1.0);
+
+    Sphere ceilling({0,-10500,4},9999);
+    Material ceillingMat({255,255,255},0.4,0.4,1.0,1);
+    Object ceillingObj(&ceilling, &ceillingMat);
+
+
+    Sphere rightWall({-11300,0,4},9999);
+    Material rightWallMat({0,255,0},0.4,0.4,1.0,1);
+    Object rightWallObj(&rightWall, &rightWallMat);
+
+
+    Sphere leftWall({11300,0,4},9999);
+    Material leftWallMat({255,0,0},0.4,0.4,1.0,1);
+    Object leftWallObj(&leftWall, &leftWallMat);
+
+
+    Sphere floor({0,10500,4},9999);
+    Material floorMat({255,255,255},0.4,0.4,1.0,1);
+    Object floorObj(&floor, &floorMat);
+
     //Cena
-    Object o1(&sp, &luca);
-    Object o2(&sp2, &luca2);
-    Object o3(&sp3, &luca3);
-    Object o4(&sp4, &luca4);
-    Object o5(&sp5, &luca5);
-    Object o6(&sp6, &luca6);
-    Object o7(&sp7, &luca7);
     Scene sc;
-    sc.add(&o1);
-    sc.add(&o2);
-    sc.add(&o3);
-    sc.add(&o4);
-    sc.add(&o5);
-    sc.add(&o6);
-    sc.add(&o7);
+    sc.add(&o);
+    sc.add(&ceillingObj);
+    sc.add(&rightWallObj);
+    sc.add(&leftWallObj);
+    sc.add(&floorObj);
     saveStringToFile(imageRender(width, height,10,c,sc));
 
     return 0;

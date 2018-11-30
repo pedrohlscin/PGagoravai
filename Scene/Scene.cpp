@@ -23,7 +23,7 @@ Vec3 Scene::trace(const Ray &r, int recursionLevel) const {
         for (auto obj: this->objects){
 
             Vec3 vDir = (obj->getPoint() - oii.pHit).getUnitVector();
-            Ray objetToLight = {oii.pHit + 0.001f*oii.normal,  vDir};
+            Ray objetToLight = {oii.pHit + 0.0001f*oii.normal,  vDir};
             ObjectIntersectionInfo oii2;
             if(obj != objectIntersected && obj->isLight() && (!this->intersect(objetToLight, &oii2) || oii2.o == obj) ){
                 //Calculando cores em base em componentes
