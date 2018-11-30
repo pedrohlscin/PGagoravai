@@ -63,7 +63,7 @@ int main() {
     Camera c(cPos, fov, cTarget, near, cUp, width, height);
 
     // Objeto
-    Sphere sp({0,-1,4},0.25);
+    Sphere sp({0,0,4},0.25);
     Material luca({255,255,255},0,0,1,1);
 
     Object o(&sp, &luca);

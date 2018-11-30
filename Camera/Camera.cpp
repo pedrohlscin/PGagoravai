@@ -6,7 +6,7 @@
 
 Camera::Camera(Vec3 position, double fov, Vec3 target, double near, Vec3 up, int width, int height) {
     this->axisZ = (position - target).getUnitVector();
-    this->axisX = axisZ.cross(up, axisZ).getUnitVector();
+    this->axisX = axisZ.cross(axisZ, up).getUnitVector();
     this->axisY = axisZ.cross(axisZ, axisX).getUnitVector();
 
     this->aspect = (float) width/ (float )height;
