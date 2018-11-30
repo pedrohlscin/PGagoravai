@@ -27,7 +27,7 @@ public:
 
 
     friend Vec3 operator+(const Vec3 &v1, const Vec3 &v2){
-        Vec3 v =  Vec3(v1.getCordX() + v2.getCordX(), v1.getCordY() + v2.getCordY(), v1.getCordY()+v2.getCordZ());
+        Vec3 v =  Vec3(v1.getCordX() + v2.getCordX(), v1.getCordY() + v2.getCordY(), v1.getCordZ()+v2.getCordZ());
         return v;
     }
 

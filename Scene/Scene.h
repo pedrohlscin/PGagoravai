@@ -16,6 +16,8 @@ public:
 
     bool intersect(const Ray& r, ObjectIntersectionInfo* info= nullptr) const;
 
+    Vec3 phong(Object* objLight, ObjectIntersectionInfo objInfo, Ray incidenceRay, Ray objectIntersectedToObjLight)const;
+
     Vec3 trace(const Ray& r,int recursionLevel = 0) const ;
 
     void add(Object* object);
