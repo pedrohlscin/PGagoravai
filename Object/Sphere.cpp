@@ -24,21 +24,20 @@ bool Sphere::intersect(const Ray &r, ObjectIntersectionInfo *info) const {
         double firstRoot = sde.getRoots().first;
         double secondRoot = sde.getRoots().second;
 
-
-        // Pegar o menor maior que 0
-        double closestPoint = std::max(std::min(secondRoot, firstRoot), 0.0);
-        if(closestPoint == 0){
-            closestPoint = std::max(secondRoot, firstRoot);
-            if(closestPoint < 0){
-                return false;
+        if (firstRoot > 0) {
+            if(info != nullptr){
+                info->t = firstRoot;
+                info->pHit = r.positionAt(info->t);
+                info->normal = (info->pHit - center).getUnitVector();
             }
+            return true;
         }
 
-        if(closestPoint > 0){
-            if(info!=NULL){
-                info->t = closestPoint;
+        if (secondRoot > 0) {
+            if(info != nullptr){
+                info->t = secondRoot;
                 info->pHit = r.positionAt(info->t);
-                info->normal = (info->pHit - center) / radius;
+                info->normal = (info->pHit - center).getUnitVector();
             }
             return true;
         }

@@ -15,7 +15,7 @@ float Vec3::getColorG() const { return e[1]; }
 float Vec3::getColorB() const { return e[2]; }
 
 
-Vec3 Vec3::operator-() const { return {-e[0], e[1], e[2]}; }
+Vec3 Vec3::operator-() const { return {-e[0], -e[1], -e[2]}; }
 float Vec3::operator[](int i) const { return e[i]; }
 float& Vec3::operator[](int i) { return e[i]; };
 // More complex operators with "="

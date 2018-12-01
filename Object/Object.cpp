@@ -7,9 +7,10 @@ Object::Object(Geometry *geometry, Material *material) {
 }
 
 bool Object::intersect(const Ray &r, ObjectIntersectionInfo *info) {
-    if(info != NULL) info->o = this;
-    return this->geometry->intersect(r, info);
-
+    bool didIntersect = this->geometry->intersect(r, info);
+    if (info != nullptr && didIntersect)
+        info->o = this;
+    return didIntersect;
 }
 
 Material *Object::getMaterial() {

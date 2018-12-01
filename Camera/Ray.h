@@ -11,7 +11,7 @@ private:
 
 public:
     Ray() {}
-    Ray(const Vec3& a, const Vec3& b) { A = a; B = b; }
+    Ray(const Vec3& a, Vec3 b) { A = a; B = b.getUnitVector(); }
     Vec3 origin() const       { return A; }
     Vec3 direction() const    { return B; }
     Vec3 positionAt(double t) const { return A + t*B;}

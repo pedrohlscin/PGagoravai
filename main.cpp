@@ -5,7 +5,7 @@
 #include "Scene/Scene.h"
 #include <cstdlib>
 
-
+using namespace std;
 
 
 //Apernas criando a imagem
@@ -46,44 +46,42 @@ std::string imageRender(int sizeX, int sizeY, int sizeZ, Camera cam, Scene c ){
 }
 
 
+void leituraDOIDA(){
+    string cu;
+//    while(getline(cin, cu)){
+//        cout << cu << endl;
+//
+//    }
+    int resX, resY;
+    string cua;
+//    cin >>cua;
+    cin >> resX >> resY;
+    cout << resX << " " << resY << endl;
+}
+
+
 int main() {
     //Resolução
-    float resAspect = 320/200;
-    int width = 320;
-    int height = 200;
+    leituraDOIDA();
 
+    int width = 480;
+    int height = 320;
+
+    float resAspect = width/height;
     //Camera
-    Vec3 cTarget{0,0,1};
-    Vec3 cPos {0,0,0};
-    Vec3 cUp{0,1,0};
+    Vec3 cTarget{0.0,-0.042612,-1.0};
+    Vec3 cPos {50,52,295.6};
+    Vec3 cUp{0.0,1.0,0.0};
 
-    double fov = 40;
-    double near = 1;
+    double fov = 90.0;
+    double near = 1.0;
 
     Camera c(cPos, fov, cTarget, near, cUp, width, height);
 
-    // Objeto
-    Sphere sp({0,1,4},0.25);
-    Material luca({255,255,255},0,0,1,1);
-
-    Object o(&sp, &luca);
-
-
-    Sphere ceilling({0,10000,0},9999);
-    Material ceillingMat({255,0,0},0,1.0,0,1);
-    Object ceillingObj(&ceilling, &ceillingMat);
-
-    Sphere floor({0,-10000,0},9999);
-    Material floorMat({0,255,0},0,1.0,0,1);
-    Object floorObj(&floor, &floorMat);
-
-
-    //Cena
     Scene sc;
-    sc.add(&o);
 
-    sc.add(&ceillingObj);
-    sc.add(&floorObj);
+
+
     saveStringToFile(imageRender(width, height,10,c,sc));
 
     return 0;

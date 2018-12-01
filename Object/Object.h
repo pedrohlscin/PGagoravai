@@ -23,6 +23,7 @@ private:
 public:
     Object(Geometry* geometry, Material* material1);
 
+
     bool intersect(const Ray& r, ObjectIntersectionInfo* info = nullptr);
 
     Vec3 getPoint();

@@ -13,7 +13,7 @@ Material::Material(Vec3 color, float ks, float kd, float ke, float alpha) {
 }
 
 Vec3 Material::getNormalizedColor(){
-    return this->color/255;
+    return this->color/255.0;
 }
 
 
