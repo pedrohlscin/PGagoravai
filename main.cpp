@@ -16,7 +16,7 @@ void saveStringToFile(std::string imagePBM){
     myFile.close();
 }
 
-std::string imageRender(int sizeX, int sizeY, int sizeZ, Camera cam, Scene c ){
+std::string imageRender(int sizeX, int sizeY, Camera cam, Scene c ){
     std::string stringedFile = "";
     stringedFile.append("P3\n" + std::to_string(sizeX) + " " + std::to_string(sizeY) + "\n255\n");
     Vec3 col(0, 0, 0);
@@ -47,16 +47,53 @@ std::string imageRender(int sizeX, int sizeY, int sizeZ, Camera cam, Scene c ){
 
 
 void leituraDOIDA(){
-    string cu;
-//    while(getline(cin, cu)){
-//        cout << cu << endl;
-//
-//    }
+    /* ENTRADA:
+     * X Ÿ -> Resolução
+     * Ox Oy Oz Tx Ty Tz Ux Uy Uz FOV NEAR -> Camera
+     * Numero de Materiais
+     * R G B KS KD KE ALPHA x Numero de Materiais -> Materiais
+     * X Y Z Raio x Numero de Materiais -> Esferas
+     */
+
     int resX, resY;
-    string cua;
-//    cin >>cua;
     cin >> resX >> resY;
-    cout << resX << " " << resY << endl;
+    float Ox, Oy, Oz, Tx, Ty, Tz, Ux, Uy, Uz,fov,near;
+    cin >> Ox >> Oy >> Oz >> Tx >> Ty >> Tz >> Ux >> Uy >> Uz >> fov >> near;
+    cout << "Lido: " << Ox << " " << Oy << " " << Oz << " " << Tx << " " << Ty << " " << Tz << " " << Ux << " " << Uy << " " << Uz << " " << fov << " " << near << endl;
+    Vec3 Origin{Ox, Oy, Oz};
+    Vec3 Target{Tx, Ty, Tz};
+    Vec3 Up{Ux, Uy, Uz};
+    Camera c(Origin, fov, Target, near,Up, resX, resY);
+
+    int quantidadeMateriais;
+    cin >> quantidadeMateriais;
+    Material* m[quantidadeMateriais];
+    for (int i =0;i<quantidadeMateriais;i++){
+        float r,g,b,ks,kd,ke,alpha;
+        cin >> r >> g >> b >> ks >> kd >> ke >> alpha;
+        cout << "Lido: " << r << " " << g << " " << b << " " << ks << " " << kd << " " << ke << " " << alpha << endl;
+        Vec3 color(r,g,b);
+        m[i] = new Material(color, ks, kd, ke, alpha);
+    }
+    int quantidadeDeEsferas;
+    cin >> quantidadeDeEsferas;
+
+    Sphere* sp[quantidadeDeEsferas];
+    Object* ob[quantidadeDeEsferas];
+    Scene cena;
+    for(int i =0;i<quantidadeDeEsferas;i++){
+        int relacMat;
+        cin >> relacMat;
+        float x,y,z,raio;
+        cin >> x >> y >> z >> raio;
+        cout << "Lido :" << x << " " << y << " " << z << " " << raio << endl;
+        Vec3 pos(x,y,z);
+        sp[i] = new Sphere(pos, raio);
+        ob[i] = new Object(sp[i], m[relacMat]);
+        cena.add(ob[i]);
+    }
+
+    saveStringToFile(imageRender(resX, resY,c,cena));
 }
 
 
@@ -64,25 +101,6 @@ int main() {
     //Resolução
     leituraDOIDA();
 
-    int width = 480;
-    int height = 320;
-
-    float resAspect = width/height;
-    //Camera
-    Vec3 cTarget{0.0,-0.042612,-1.0};
-    Vec3 cPos {50,52,295.6};
-    Vec3 cUp{0.0,1.0,0.0};
-
-    double fov = 90.0;
-    double near = 1.0;
-
-    Camera c(cPos, fov, cTarget, near, cUp, width, height);
-
-    Scene sc;
-
-
-
-    saveStringToFile(imageRender(width, height,10,c,sc));
 
     return 0;
 }
