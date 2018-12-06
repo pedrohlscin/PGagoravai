@@ -30,6 +30,7 @@ Vec3 Scene::phong(Object* objLight, ObjectIntersectionInfo objInfo, Ray incidenc
     return diff + spec;
 }
 
+//pega o raio e verifica se há mais alguma coisa entre a fonte de iluminação e o objeto e calcula a cor usando phong
 Vec3 Scene::trace(const Ray &r, int recursionLevel) const {
 
     ObjectIntersectionInfo objectIntersectedInformation;
@@ -45,6 +46,7 @@ Vec3 Scene::trace(const Ray &r, int recursionLevel) const {
                 Vec3 vDir = (obj->getPoint() - objectIntersectedInformation.pHit).getUnitVector();
                 Ray objectToLight{objectIntersectedInformation.pHit+(0.01f*vDir), vDir};
                 ObjectIntersectionInfo oii2;
+                //checa se existe algum outro objeto entre a fonte de iluminação e o obj
                 if(!this->intersect(objectToLight, &oii2) || oii2.o == obj)
                     colorSum += phong(obj, objectIntersectedInformation, r, objectToLight);
                 //else
