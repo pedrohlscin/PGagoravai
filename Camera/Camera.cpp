@@ -28,6 +28,7 @@ Ray Camera::getRay(double x, double y) const {
     double pY = this->axisX.getCordY() * pointX + this->axisY.getCordY() * pointY + this->axisZ.getCordY() * pointZ;
     double pZ = this->axisX.getCordZ() * pointX + this->axisY.getCordZ() * pointY + this->axisZ.getCordZ() * pointZ;
 
+    //retorna um raio apontando do plano para o obj
     Vec3 point(pX, pY, pZ);
     return Ray(this->position, point.getUnitVector());
 }
